@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Pedido Finalizado</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Pedido Finalizado com Sucesso!</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/historico">Histórico</a>
+            <a href="/carrinho">Carrinho</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+    <main>
+        <div class="pedido-finalizado">
+            <h2>Obrigado por sua compra!</h2>
+            <p>Seu pedido <strong>#{{ pedido_id }}</strong> foi finalizado.</p>
+            <p>Total do pedido: <strong>R$ {{ total }}</strong></p>
+            <a href="/" class="btn">Voltar para a Home</a>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 E-commerce</p>
+    </footer>
+</body>
+</html>

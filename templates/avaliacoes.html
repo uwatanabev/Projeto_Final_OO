@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Avaliações de Produtos</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Avaliações</h1>
+        <nav>
+            <a href="/">Home</a>
+            {% if username %}
+              <a href="/admin">Painel Administrativo</a>
+              <a href="/carrinho">Carrinho</a>
+              <a href="/historico">Histórico</a>
+              <a href="/logout">Logout</a>
+            {% else %}
+              <a href="/login">Login</a>
+              <a href="/register">Registrar</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        <h2>Todas as Avaliações</h2>
+        <div class="avaliacoes-list">
+            {% for avaliacao in avaliacoes %}
+            <div class="avaliacao-card">
+                <h3>{{ avaliacao[6] }} - Avaliado por {{ avaliacao[2] }}</h3>
+                <p>Nota: {{ avaliacao[3] }} / 5</p>
+                <p>{{ avaliacao[4] }}</p>
+                <p><small>{{ avaliacao[5] }}</small></p>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 E-commerce</p>
+    </footer>
+</body>
+</html>

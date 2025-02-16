@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel Administrativo</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <script>
+      var socket = io();
+      socket.on('mensagem', function(msg) {
+          alert(msg);
+      });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Painel Administrativo</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/carrinho">Carrinho</a>
+            <a href="/historico">Histórico</a>
+            <a href="/avaliacoes">Avaliações</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+    <main>
+        <div class="admin-form">
+            <h2>Adicionar Novo Produto</h2>
+            <form method="POST">
+                <label for="nome">Nome do Produto:</label>
+                <input type="text" id="nome" name="nome" required>
+                <label for="preco">Preço:</label>
+                <input type="number" step="0.01" id="preco" name="preco" required>
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" id="quantidade" name="quantidade" required>
+                <button type="submit">Adicionar Produto</button>
+            </form>
+        </div>
+        <div class="product-management">
+            <h2>Seus Produtos</h2>
+            <div class="product-list">
+                {% for produto in produtos %}
+                <div class="product-card">
+                    <h3>{{ produto[1] }}</h3>
+                    <p>Preço: R$ {{ produto[2] }}</p>
+                    <p>Estoque: {{ produto[3] }}</p>
+                    <div class="actions">
+                        <a href="/admin/edit/{{ produto[0] }}" class="edit-btn">Editar</a>
+                        <a href="/admin/delete/{{ produto[0] }}" class="delete-btn">Excluir</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>E-commerce - Home</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>E-commerce</h1>
+        <nav>
+            <a href="/">Home</a>
+            {% if username %}
+              <a href="/admin">Painel Administrativo</a>
+              <a href="/carrinho">Carrinho</a>
+              <a href="/historico">Histórico</a>
+              <a href="/avaliacoes">Avaliações</a>
+              <a href="/logout">Logout</a>
+            {% else %}
+              <a href="/login">Login</a>
+              <a href="/register">Registrar</a>
+              <a href="/avaliacoes">Avaliações</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        <h2>Produtos Disponíveis</h2>
+        <div class="product-list">
+            {% for produto in produtos %}
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/200x150" alt="{{ produto.nome }}">
+                </div>
+                <div class="product-info">
+                    <h3>{{ produto.nome }}</h3>
+                    <p class="price">R$ {{ produto.preco }}</p>
+                    <p class="stock">Estoque: {{ produto.quantidade }}</p>
+                    <p class="seller">Vendido por: {{ produto.username }}</p>
+                    {% if produto.avg_rating %}
+                      <p class="rating">Avaliação: {{ produto.avg_rating }} ({{ produto.count_rating }} avaliações)</p>
+                    {% else %}
+                      <p class="rating">Sem avaliações</p>
+                    {% endif %}
+                </div>
+                <div class="product-actions">
+                    <a href="/avaliar/{{ produto.id }}" class="btn">Avaliar</a>
+                    {% if username %}
+                    <form method="POST" action="/adicionar_carrinho/{{ produto.id }}">
+                        <label for="quantity-{{ produto.id }}">Qtd:</label>
+                        <input type="number" id="quantity-{{ produto.id }}" name="quantity" value="1" min="1" max="{{ produto.quantidade }}" style="width:60px;">
+                        <button type="submit" class="btn">Adicionar ao Carrinho</button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 E-commerce</p>
+    </footer>
+</body>
+</html>
