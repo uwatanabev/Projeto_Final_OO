@@ -1,3 +1,4 @@
+# models.py
 import sqlite3
 import os
 
@@ -10,33 +11,28 @@ class DatabaseManager:
         if not os.path.exists(db_path):
             with sqlite3.connect(db_path) as conn:
                 cursor = conn.cursor()
-                # Tabela de produtos com quantidade e vendedor (username)
                 cursor.execute('''CREATE TABLE IF NOT EXISTS produtos (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                                     nome TEXT NOT NULL,
                                     preco REAL NOT NULL,
                                     quantidade INTEGER NOT NULL DEFAULT 0,
                                     username TEXT NOT NULL)''')
-                # Tabela de usuários
                 cursor.execute('''CREATE TABLE IF NOT EXISTS usuarios (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                                     username TEXT NOT NULL UNIQUE,
                                     password TEXT NOT NULL)''')
-                # Tabela do carrinho de compras
                 cursor.execute('''CREATE TABLE IF NOT EXISTS carrinho (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                                     username TEXT NOT NULL,
                                     product_id INTEGER NOT NULL,
                                     quantity INTEGER NOT NULL,
                                     FOREIGN KEY(product_id) REFERENCES produtos(id))''')
-                # Tabela de pedidos finalizados
                 cursor.execute('''CREATE TABLE IF NOT EXISTS pedidos (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                                     username TEXT NOT NULL,
                                     total REAL NOT NULL,
                                     data TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                                     status TEXT NOT NULL)''')
-                # Itens de cada pedido
                 cursor.execute('''CREATE TABLE IF NOT EXISTS itens_pedido (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                                     pedido_id INTEGER NOT NULL,
@@ -45,14 +41,12 @@ class DatabaseManager:
                                     price REAL NOT NULL,
                                     FOREIGN KEY(pedido_id) REFERENCES pedidos(id),
                                     FOREIGN KEY(product_id) REFERENCES produtos(id))''')
-                # Log de atividades (histórico)
                 cursor.execute('''CREATE TABLE IF NOT EXISTS log_atividades (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                                     username TEXT NOT NULL,
                                     acao TEXT NOT NULL,
                                     detalhes TEXT,
                                     data TIMESTAMP DEFAULT CURRENT_TIMESTAMP)''')
-                # Avaliações de produtos
                 cursor.execute('''CREATE TABLE IF NOT EXISTS avaliacoes (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                                     product_id INTEGER NOT NULL,
@@ -61,7 +55,6 @@ class DatabaseManager:
                                     comment TEXT,
                                     data TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                                     FOREIGN KEY(product_id) REFERENCES produtos(id))''')
-                # Insere um usuário admin padrão
                 cursor.execute("INSERT OR IGNORE INTO usuarios (username, password) VALUES (?, ?)", ("admin", "1234"))
                 conn.commit()
 

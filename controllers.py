@@ -1,6 +1,6 @@
+# controllers.py
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
-from models import Produto, Usuario, Carrinho, Pedido, LogAtividades, Avaliacao, DatabaseManager
-
+from models import Produto, Usuario, Carrinho, Pedido, LogAtividades, Avaliacao
 bp = Blueprint("bp", __name__)
 
 @bp.route('/')
@@ -67,6 +67,9 @@ def admin():
         produto = Produto(nome, preco, quantidade, username)
         produto.salvar()
         LogAtividades.registrar(username, "adicionar_produto", f"Produto {nome} adicionado.")
+        # Emite mensagem via WebSocket para notificar os clientes conectados
+        from main import socketio
+        socketio.emit("mensagem", f"Novo produto {nome} adicionado!", broadcast=True)
         return redirect(url_for('bp.admin'))
     produtos = Produto.listar_por_usuario(username)
     return render_template('admin.html', produtos=produtos, username=username)
@@ -137,6 +140,7 @@ def finalizar_pedido():
 
 @bp.route('/pedido_finalizado/<int:pedido_id>')
 def pedido_finalizado(pedido_id):
+    from models import DatabaseManager
     with DatabaseManager.get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute("SELECT total FROM pedidos WHERE id = ?", (pedido_id,))
@@ -146,6 +150,7 @@ def pedido_finalizado(pedido_id):
 
 @bp.route('/avaliacoes')
 def avaliacoes():
+    from models import DatabaseManager
     with DatabaseManager.get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute("""

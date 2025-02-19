@@ -1,3 +1,4 @@
+# main.py
 from flask import Flask
 from flask_socketio import SocketIO
 from controllers import bp  # Importa o Blueprint com os controllers
