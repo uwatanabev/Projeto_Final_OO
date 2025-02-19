@@ -111,7 +111,7 @@ Contribuições são muito bem-vindas! Caso deseje contribuir, por favor abra um
 
 ## Contato
 
-Bernardo Watanabe Venzi - 232001120
-Pedro Henrique Pereia Santos - 232038442
+- Bernardo Watanabe Venzi - 232001120
+- Pedro Henrique Pereia Santos - 232038442
 
 ---
