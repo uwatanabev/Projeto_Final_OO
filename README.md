@@ -42,8 +42,8 @@ Um projeto de e-commerce desenvolvido com Flask, que implementa funcionalidades 
 1. **Clone o repositório:**
 
    ```bash
-   git clone <URL_do_repositorio>
-   cd <nome_do_projeto>
+   git clone <https://github.com/uwatanabev/Projeto_Final_OO.git>
+   cd <Projeto_Final_OO>
    ```
 
 2. **Crie e ative um ambiente virtual (opcional, mas recomendado):**
