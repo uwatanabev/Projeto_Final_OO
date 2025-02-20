@@ -1,10 +1,10 @@
+# tests/test_main.py
 import os
 import tempfile
 import unittest
 import sys
 import warnings
 
-# Ignora os ResourceWarnings (se forem apenas avisos)
 warnings.simplefilter("ignore", ResourceWarning)
 
 # Insere o diretório raiz do projeto no path
@@ -26,7 +26,7 @@ class AppTestCase(unittest.TestCase):
         self.client = app.test_client()
         init_db()
         
-        # Limpa o cache do Jinja2 para evitar reter referências a conexões abertas
+        # Limpa o cache do Jinja2 para evitar reter referências
         app.jinja_env.cache = {}
 
         # Registra e loga um usuário padrão para os testes

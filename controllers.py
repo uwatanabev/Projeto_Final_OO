@@ -1,5 +1,7 @@
+# controllers.py
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from models import Produto, Usuario, Carrinho, Pedido, LogAtividades, Avaliacao
+
 bp = Blueprint("bp", __name__)
 
 @bp.route('/')
@@ -66,7 +68,7 @@ def admin():
         produto = Produto(nome, preco, quantidade, username)
         produto.salvar()
         LogAtividades.registrar(username, "adicionar_produto", f"Produto {nome} adicionado.")
-        # Emite mensagem via WebSocket para notificar os clientes conectados
+        # Envia notificação via WebSocket para clientes conectados
         from main import socketio
         socketio.emit("mensagem", f"Novo produto {nome} adicionado!", to='/', namespace='/')
         return redirect(url_for('bp.admin'))

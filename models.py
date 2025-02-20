@@ -1,11 +1,15 @@
 # models.py
 import sqlite3
 import os
+from werkzeug.security import generate_password_hash, check_password_hash
 
 db_path = "ecommerce.db"
 
 class DatabaseManager:
-    """Gerencia operações com o banco de dados."""
+    """Gerencia operações com o banco de dados.
+    
+    Todas as classes de modelo dependem deste gerenciador para acesso ao BD.
+    """
     @staticmethod
     def init_db():
         if not os.path.exists(db_path):
@@ -55,7 +59,9 @@ class DatabaseManager:
                                     comment TEXT,
                                     data TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                                     FOREIGN KEY(product_id) REFERENCES produtos(id))''')
-                cursor.execute("INSERT OR IGNORE INTO usuarios (username, password) VALUES (?, ?)", ("admin", "1234"))
+                # Cria usuário admin padrão com senha segura (hash)
+                cursor.execute("INSERT OR IGNORE INTO usuarios (username, password) VALUES (?, ?)", 
+                               ("admin", generate_password_hash("1234")))
                 conn.commit()
 
     @staticmethod
@@ -64,7 +70,10 @@ class DatabaseManager:
 
 
 class Produto:
-    """Modelo de produto."""
+    """Modelo de Produto.
+    
+    Representa a associação entre produtos, usuários e avaliações.
+    """
     def __init__(self, nome, preco, quantidade, username, id=None):
         self.id = id
         self.nome = nome
@@ -120,10 +129,14 @@ class Produto:
 
 
 class Usuario:
-    """Modelo de usuário."""
-    def __init__(self, username, password):
+    """Modelo de Usuário.
+    
+    Utiliza hash para armazenamento seguro da senha.
+    """
+    def __init__(self, username, password, id=None):
         self.username = username
-        self.password = password
+        self.password = generate_password_hash(password)
+        self.id = id
 
     def registrar(self):
         with DatabaseManager.get_connection() as conn:
@@ -138,15 +151,18 @@ class Usuario:
     def autenticar(username, password):
         with DatabaseManager.get_connection() as conn:
             cursor = conn.cursor()
-            cursor.execute(
-                "SELECT * FROM usuarios WHERE username = ? AND password = ?",
-                (username, password)
-            )
-            return cursor.fetchone()
+            cursor.execute("SELECT password FROM usuarios WHERE username = ?", (username,))
+            user = cursor.fetchone()
+            if user and check_password_hash(user[0], password):
+                return True
+            return False
 
 
 class Carrinho:
-    """Gerencia o carrinho de compras."""
+    """Gerencia o carrinho de compras.
+    
+    Estabelece a associação entre usuário e produtos.
+    """
     @staticmethod
     def adicionar(username, product_id, quantity):
         with DatabaseManager.get_connection() as conn:
@@ -206,7 +222,10 @@ class Carrinho:
 
 
 class Pedido:
-    """Gerencia a finalização de pedidos."""
+    """Gerencia a finalização de pedidos.
+    
+    Implementa composição entre o pedido e seus itens.
+    """
     @staticmethod
     def finalizar(username):
         itens = Carrinho.listar(username)
@@ -239,7 +258,10 @@ class Pedido:
 
 
 class LogAtividades:
-    """Registra as atividades dos usuários."""
+    """Registra as atividades dos usuários.
+    
+    Demonstra associação entre as ações e o usuário.
+    """
     @staticmethod
     def registrar(username, acao, detalhes):
         with DatabaseManager.get_connection() as conn:
@@ -262,7 +284,10 @@ class LogAtividades:
 
 
 class Avaliacao:
-    """Gerencia as avaliações de produtos."""
+    """Gerencia as avaliações de produtos.
+    
+    Estabelece a associação entre produtos e usuários que avaliam.
+    """
     @staticmethod
     def registrar(product_id, username, rating, comment):
         with DatabaseManager.get_connection() as conn:

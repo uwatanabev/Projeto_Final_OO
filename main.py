@@ -1,6 +1,7 @@
+# main.py
 from flask import Flask
 from flask_socketio import SocketIO
-from controllers import bp  # Importa o Blueprint com os controllers
+from controllers import bp  # Importa o blueprint com as rotas
 from models import DatabaseManager
 import eventlet
 

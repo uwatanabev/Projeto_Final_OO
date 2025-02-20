@@ -1,10 +1,9 @@
-/* Import Google Font */
+/* static/style.css */
+
+/* Importa a fonte do Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
-/* 
-  1) Ajuste de altura total e remoção de margens/padding para que o layout
-     possa ocupar toda a tela em coluna (header, main, footer).
-*/
+/* Reset de margens e padding para html e body */
 html,
 body {
   margin: 0;
@@ -12,10 +11,7 @@ body {
   height: 100%;
 }
 
-/* 
-  2) Body como flex container em coluna, garantindo o footer ao final.
-     min-height: 100vh => corpo ocupa a tela inteira, mesmo sem conteúdo.
-*/
+/* Define o body como flex container para organizar header, main e footer */
 body {
   display: flex;
   flex-direction: column;
@@ -25,7 +21,7 @@ body {
   color: #333;
 }
 
-/* Cabeçalho com gradiente */
+/* Estilização do cabeçalho com gradiente */
 header {
   background: linear-gradient(135deg, #4caf50, #66bb6a);
   color: #fff;
@@ -44,7 +40,6 @@ header nav a {
   text-decoration: none;
   margin: 0 15px;
   font-weight: 500;
-  /* Transição suave no hover */
   transition: color 0.3s, transform 0.3s;
 }
 
@@ -53,10 +48,7 @@ header nav a:hover {
   transform: scale(1.05);
 }
 
-/* 
-  3) O main ocupa todo o espaço flexível entre o header e o footer
-     para empurrar o footer para baixo.
-*/
+/* Main ocupa o espaço restante */
 main {
   flex: 1;
   padding: 2rem;
@@ -64,17 +56,13 @@ main {
   margin: 0 auto;
 }
 
-/* Se quiser aumentar ainda mais em telas grandes (opcional) */
 @media (min-width: 1400px) {
   main {
     max-width: 1400px;
   }
 }
 
-/* 
-  4) Listas de cards para produtos e avaliações.
-     Uso de flex-wrap para acomodar múltiplos cards lado a lado.
-*/
+/* Listas de produtos e avaliações */
 .product-list,
 .avaliacoes-list {
   display: flex;
@@ -83,9 +71,7 @@ main {
   justify-content: center;
 }
 
-/* 
-  5) Cartões de produtos/avaliações com sombra, borda e transição suave.
-*/
+/* Cartões de produto e avaliação */
 .product-card,
 .avaliacao-card {
   background: #fff;
@@ -139,9 +125,7 @@ main {
   margin-top: 0.5rem;
 }
 
-/* 
-  6) Botões com efeito de hover e leve "zoom".
-*/
+/* Botões com hover e zoom */
 .btn {
   display: inline-block;
   padding: 0.8rem 1.2rem;
@@ -158,7 +142,7 @@ main {
   transform: scale(1.02);
 }
 
-/* Formulários gerais */
+/* Estilização de formulários */
 form {
   display: flex;
   flex-direction: column;
@@ -192,7 +176,7 @@ form button:hover {
   transform: scale(1.02);
 }
 
-/* Cartões para login, registro, edição e pedido finalizado */
+/* Estilização de cartões para login, registro, edição e pedido finalizado */
 .login-card,
 .register-card,
 .edit-card,
@@ -206,7 +190,7 @@ form button:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Histórico */
+/* Histórico de atividades */
 .historico-list {
   list-style: none;
   padding: 0;
@@ -220,7 +204,7 @@ form button:hover {
   margin-bottom: 0.5rem;
 }
 
-/* Flash messages */
+/* Mensagens de alerta */
 .flashes {
   list-style: none;
   padding: 0;
@@ -236,9 +220,7 @@ form button:hover {
   margin-bottom: 0.5rem;
 }
 
-/* 
-  7) Rodapé fixado ao final da página, mesmo em conteúdo curto.
-*/
+/* Rodapé */
 footer {
   background: #333;
   color: #fff;
@@ -246,10 +228,7 @@ footer {
   padding: 1rem;
 }
 
-/* 
-  8) Responsividade: para telas menores (máx 768px), 
-     reduzimos padding, largura de cards, etc.
-*/
+/* Responsividade para telas menores */
 @media (max-width: 768px) {
   main {
     padding: 1rem;

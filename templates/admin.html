@@ -9,7 +9,16 @@
     <script>
       var socket = io();
       socket.on("mensagem", function (msg) {
-        alert(msg);
+        // Insere a mensagem na área de notificação customizada
+        var notificationDiv = document.getElementById('notification');
+        if (notificationDiv) {
+          notificationDiv.innerText = msg;
+          notificationDiv.style.display = 'block';
+          // Oculta a notificação após 5 segundos
+          setTimeout(function(){
+            notificationDiv.style.display = 'none';
+          }, 5000);
+        }
       });
     </script>
   </head>
@@ -24,6 +33,8 @@
         <a href="/logout">Logout</a>
       </nav>
     </header>
+    <!-- Área de notificação customizada -->
+    <div id="notification" style="display:none; background: #ffeb3b; padding: 10px; text-align: center; font-weight: bold;"></div>
     <main>
       <div class="admin-form">
         <h2>Adicionar Novo Produto</h2>
@@ -47,9 +58,7 @@
             <p>Estoque: {{ produto[3] }}</p>
             <div class="actions">
               <a href="/admin/edit/{{ produto[0] }}" class="edit-btn">Editar</a>
-              <a href="/admin/delete/{{ produto[0] }}" class="delete-btn"
-                >Excluir</a
-              >
+              <a href="/admin/delete/{{ produto[0] }}" class="delete-btn">Excluir</a>
             </div>
           </div>
           {% endfor %}

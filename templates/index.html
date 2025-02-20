@@ -30,10 +30,7 @@
         {% for produto in produtos %}
         <div class="product-card">
           <div class="product-image">
-            <img
-              src="https://via.placeholder.com/200x150"
-              alt="{{ produto.nome }}"
-            />
+            <img src="https://via.placeholder.com/200x150" alt="{{ produto.nome }}" />
           </div>
           <div class="product-info">
             <h3>{{ produto.nome }}</h3>
@@ -42,8 +39,7 @@
             <p class="seller">Vendido por: {{ produto.username }}</p>
             {% if produto.avg_rating %}
             <p class="rating">
-              Avaliação: {{ produto.avg_rating }} ({{ produto.count_rating }}
-              avaliações)
+              Avaliação: {{ produto.avg_rating }} ({{ produto.count_rating }} avaliações)
             </p>
             {% else %}
             <p class="rating">Sem avaliações</p>
@@ -54,15 +50,7 @@
             {% if username %}
             <form method="POST" action="/adicionar_carrinho/{{ produto.id }}">
               <label for="quantity-{{ produto.id }}">Qtd:</label>
-              <input
-                type="number"
-                id="quantity-{{ produto.id }}"
-                name="quantity"
-                value="1"
-                min="1"
-                max="{{ produto.quantidade }}"
-                style="width: 60px"
-              />
+              <input type="number" id="quantity-{{ produto.id }}" name="quantity" value="1" min="1" max="{{ produto.quantidade }}" style="width: 60px" />
               <button type="submit" class="btn">Adicionar ao Carrinho</button>
             </form>
             {% endif %}
