@@ -1,16 +1,15 @@
-/* static/style.css */
-
 /* Import Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
 /* 
   1) Ajuste de altura total e remoção de margens/padding para que o layout
      possa ocupar toda a tela em coluna (header, main, footer).
 */
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 /* 
@@ -18,40 +17,40 @@ html, body {
      min-height: 100vh => corpo ocupa a tela inteira, mesmo sem conteúdo.
 */
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    font-family: 'Roboto', sans-serif;
-    background: #f0f2f5;
-    color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "Roboto", sans-serif;
+  background: #f0f2f5;
+  color: #333;
 }
 
 /* Cabeçalho com gradiente */
 header {
-    background: linear-gradient(135deg, #4CAF50, #66BB6A);
-    color: #fff;
-    padding: 1rem;
-    text-align: center;
+  background: linear-gradient(135deg, #4caf50, #66bb6a);
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
 }
 
 header nav {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 header nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: 500;
-    /* Transição suave no hover */
-    transition: color 0.3s, transform 0.3s;
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: 500;
+  /* Transição suave no hover */
+  transition: color 0.3s, transform 0.3s;
 }
 
 header nav a:hover {
-    color: #ddd;
-    transform: scale(1.05);
+  color: #ddd;
+  transform: scale(1.05);
 }
 
 /* 
@@ -59,185 +58,192 @@ header nav a:hover {
      para empurrar o footer para baixo.
 */
 main {
-    flex: 1;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Se quiser aumentar ainda mais em telas grandes (opcional) */
 @media (min-width: 1400px) {
-    main {
-        max-width: 1400px;
-    }
+  main {
+    max-width: 1400px;
+  }
 }
 
 /* 
   4) Listas de cards para produtos e avaliações.
      Uso de flex-wrap para acomodar múltiplos cards lado a lado.
 */
-.product-list, .avaliacoes-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: center;
+.product-list,
+.avaliacoes-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
 }
 
 /* 
   5) Cartões de produtos/avaliações com sombra, borda e transição suave.
 */
-.product-card, .avaliacao-card {
-    background: #fff;
-    border: 1px solid #ddd;
-    padding: 1.5rem;
-    border-radius: 10px;
-    width: 250px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+.product-card,
+.avaliacao-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 250px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.product-card:hover, .avaliacao-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+.product-card:hover,
+.avaliacao-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 .product-image img {
-    width: 100%;
-    border-radius: 8px;
+  width: 100%;
+  border-radius: 8px;
 }
 
 .product-info {
-    margin-top: 1rem;
-    text-align: center;
+  margin-top: 1rem;
+  text-align: center;
 }
 
 .product-info h3 {
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .product-info .price {
-    font-size: 1.2rem;
-    color: #e91e63;
+  font-size: 1.2rem;
+  color: #e91e63;
 }
 
 .product-info .stock,
 .product-info .seller,
 .product-info .rating {
-    font-size: 0.9rem;
-    color: #555;
+  font-size: 0.9rem;
+  color: #555;
 }
 
 .product-actions {
-    margin-top: 1rem;
-    text-align: center;
+  margin-top: 1rem;
+  text-align: center;
 }
 
 .product-actions form {
-    display: inline-block;
-    margin-top: 0.5rem;
+  display: inline-block;
+  margin-top: 0.5rem;
 }
 
 /* 
   6) Botões com efeito de hover e leve "zoom".
 */
 .btn {
-    display: inline-block;
-    padding: 0.8rem 1.2rem;
-    background-color: #4CAF50;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.3s;
-    margin: 0.3rem;
+  display: inline-block;
+  padding: 0.8rem 1.2rem;
+  background-color: #4caf50;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
+  margin: 0.3rem;
 }
 
 .btn:hover {
-    background-color: #45a049;
-    transform: scale(1.02);
+  background-color: #45a049;
+  transform: scale(1.02);
 }
 
 /* Formulários gerais */
 form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 form label {
-    margin: 0.5rem 0 0.2rem;
+  margin: 0.5rem 0 0.2rem;
 }
 
-form input, form textarea {
-    padding: 0.6rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+form input,
+form textarea {
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 form button {
-    padding: 0.8rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #4CAF50;
-    color: #fff;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.3s, transform 0.3s;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 form button:hover {
-    background-color: #45a049;
-    transform: scale(1.02);
+  background-color: #45a049;
+  transform: scale(1.02);
 }
 
 /* Cartões para login, registro, edição e pedido finalizado */
-.login-card, .register-card, .edit-card, .pedido-finalizado {
-    background: #fff;
-    padding: 2rem;
-    margin: 2rem auto;
-    width: 90%;
-    max-width: 500px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+.login-card,
+.register-card,
+.edit-card,
+.pedido-finalizado {
+  background: #fff;
+  padding: 2rem;
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Histórico */
 .historico-list {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .historico-list li {
-    background: #fff;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 0.5rem;
+  background: #fff;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
 }
 
 /* Flash messages */
 .flashes {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 1rem;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1rem;
 }
 
 .flashes li.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 0.5rem;
-    border: 1px solid #f5c6cb;
-    border-radius: 5px;
-    margin-bottom: 0.5rem;
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 0.5rem;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
 }
 
 /* 
   7) Rodapé fixado ao final da página, mesmo em conteúdo curto.
 */
 footer {
-    background: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
 }
 
 /* 
@@ -245,17 +251,23 @@ footer {
      reduzimos padding, largura de cards, etc.
 */
 @media (max-width: 768px) {
-    main {
-        padding: 1rem;
-    }
-    .product-card, .avaliacao-card {
-        width: 90%;
-    }
-    .admin-form, .product-management, .login-card, .register-card, .edit-card, .pedido-finalizado {
-        width: 95%;
-    }
-    header nav {
-        flex-direction: column;
-        align-items: center;
-    }
+  main {
+    padding: 1rem;
+  }
+  .product-card,
+  .avaliacao-card {
+    width: 90%;
+  }
+  .admin-form,
+  .product-management,
+  .login-card,
+  .register-card,
+  .edit-card,
+  .pedido-finalizado {
+    width: 95%;
+  }
+  header nav {
+    flex-direction: column;
+    align-items: center;
+  }
 }

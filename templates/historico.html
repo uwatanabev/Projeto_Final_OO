@@ -1,32 +1,31 @@
-<!-- templates/historico.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Histórico de Atividades</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
     <header>
-        <h1>Histórico de Atividades</h1>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/carrinho">Carrinho</a>
-            <a href="/logout">Logout</a>
-        </nav>
+      <h1>Histórico de Atividades</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/carrinho">Carrinho</a>
+        <a href="/logout">Logout</a>
+      </nav>
     </header>
     <main>
-        <h2>Atividades de {{ username }}</h2>
-        <ul class="historico-list">
-            {% for atividade in atividades %}
-            <li>
-                <strong>{{ atividade[1] }}</strong>: {{ atividade[2] }}
-                <br>
-                <small>{{ atividade[3] }}</small>
-            </li>
-            {% endfor %}
-        </ul>
+      <h2>Atividades de {{ username }}</h2>
+      <ul class="historico-list">
+        {% for atividade in atividades %}
+        <li>
+          <strong>{{ atividade[1] }}</strong>: {{ atividade[2] }}
+          <br />
+          <small>{{ atividade[3] }}</small>
+        </li>
+        {% endfor %}
+      </ul>
     </main>
-</body>
+  </body>
 </html>
