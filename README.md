@@ -41,14 +41,14 @@ Um projeto de e-commerce desenvolvido com Flask, que implementa funcionalidades 
 1. **Clone o repositório:**
 
    ```bash
-   git clone <https://github.com/uwatanabev/Projeto_Final_OO.git>
-   cd <Projeto_Final_OO>
+   git clone https://github.com/uwatanabev/Projeto_Final_OO.git
+   cd Projeto_Final_OO
    ```
 
 2. **Crie e ative um ambiente virtual (opcional, mas recomendado):**
 
    ```bash
-   python3 -m venv venv
+   python -m venv venv
    source venv/bin/activate   # Unix/MacOS
    venv\Scripts\activate      # Windows
    ```
@@ -62,7 +62,7 @@ Um projeto de e-commerce desenvolvido com Flask, que implementa funcionalidades 
 4. **Inicie a aplicação:**
 
    ```bash
-   python3 main.py
+   python main.py
    ```
 
    A aplicação estará disponível em `http://localhost:5000`.
@@ -72,13 +72,17 @@ Um projeto de e-commerce desenvolvido com Flask, que implementa funcionalidades 
 1. **Construa a imagem Docker:**
 
    ```bash
-   docker build -t ecommerce-flask .
+   docker build -t ecommerce-flask . # Windows
+
+   docker build -t ecommerce-app . # Unix/MacOs
    ```
 
 2. **Execute o container:**
 
    ```bash
-   docker run -p 5000:5000 ecommerce-flask
+   docker run -p 5000:5000 ecommerce-flask # Windows
+
+   docker run -p 5000:5000 ecommerce-app # Unix/MacOs
    ```
 
    Ou, para usar o Docker Compose:
@@ -94,7 +98,10 @@ Um projeto de e-commerce desenvolvido com Flask, que implementa funcionalidades 
 Para rodar os testes unitários, execute:
 
 ```bash
-python3 -m unittest discover tests
+python -m unittest discover tests # Windows
+coverage run -m unittest discover -s tests # Unix/MacOS
+
+coverage report -m
 ```
 
 ## Melhorias Futuras
