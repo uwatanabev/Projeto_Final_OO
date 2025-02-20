@@ -1,5 +1,4 @@
 ---
-
 # E-commerce Flask
 
 Um projeto de e-commerce desenvolvido com Flask, que implementa funcionalidades essenciais como autenticação de usuários (login/logout), gerenciamento de produtos, carrinho de compras, finalização de pedidos, avaliações e histórico de atividades. Além disso, o projeto utiliza WebSocket com Flask-SocketIO para notificações em tempo real e conta com uma interface responsiva e moderna.
@@ -49,7 +48,7 @@ Um projeto de e-commerce desenvolvido com Flask, que implementa funcionalidades 
 2. **Crie e ative um ambiente virtual (opcional, mas recomendado):**
 
    ```bash
-   python -m venv venv
+   python3 -m venv venv
    source venv/bin/activate   # Unix/MacOS
    venv\Scripts\activate      # Windows
    ```
@@ -63,7 +62,7 @@ Um projeto de e-commerce desenvolvido com Flask, que implementa funcionalidades 
 4. **Inicie a aplicação:**
 
    ```bash
-   python main.py
+   python3 main.py
    ```
 
    A aplicação estará disponível em `http://localhost:5000`.
@@ -95,7 +94,7 @@ Um projeto de e-commerce desenvolvido com Flask, que implementa funcionalidades 
 Para rodar os testes unitários, execute:
 
 ```bash
-python -m unittest discover tests
+python3 -m unittest discover tests
 ```
 
 ## Melhorias Futuras
